@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include partials/head %>
+</head>
+
+<body class="grey lighten-3">
+	<header>
+		<% include partials/header %>
+	</header>
+	<main>
+		<div class="container">
+			<div class="card-panel">
+				<div class="row">
+					<div class="col s12" style="min-height: 75vh;">
+						<h1 class="center"><b>Latest ads</b></h1>
+						<% dbData.forEach(function (data) { %>
+						<div class="card lighten-3 hoverable sticky-action">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="https://picsum.photos/600/50/?random" alt="random">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">
+									<%= data.name %><i class="material-icons right">add</i>
+								</span>
+								<p>
+									<%= data.resume %>
+								</p>
+							</div>
+							<div class="card-action">
+								<a href="#" class="activator">Learn more</a>
+								<a href="#modal<%= data.id %>" class="right modal-trigger">Apply</a>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">
+									<%= data.name %><i class="material-icons right">close</i></span>
+								<p>
+									<%= data.description %>
+								</p>
+							</div>
+						</div>
+						<div id="modal<%= data.id %>" class="modal">
+							<div class="modal-content">
+								<h4 class="center"><b>Apply to</b><br><i><%= data.name %> <u id="id">#<%= data.id %></u></i></h4>
+								<form id="registration" class="col s12" action="/">
+									<% if (!user) { %>
+									<h5>User profile</h5>
+									<div class="row">
+										<div class="input-field col s6">
+											<input id="firstname<%= data.id %>" type="text" class="validate" placeholder="John" required>
+											<label for="firstname" class="">First Name</label>
+										</div>
+										<div class="input-field col s6">
+											<input id="lastname<%= data.id %>" type="text" class="validate" placeholder="Doe" required>
+											<label for="lastname">Last Name</label>
+										</div>
+										<div class="input-field col s6">
+											<input id="email" type="email" class="validate" placeholder="member@jobboard.com" required>
+											<label for="email">Email</label>
+										</div>
+										<div class="input-field col s6">
+											<input id="phone<%= data.id %>" type="number" class="validate" placeholder="0656463626" required>
+											<label for="phone">Phone</label>
+										</div>
+									</div>
+									<% } %>
+									<h5>Message</h5>
+									<div class="row">
+										<div class="input-field col s12">
+											<textarea id="message<%= data.id %>" class="materialize-textarea" data-length="512"></textarea>
+											<label for="message">Message</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+											<button id="<%= data.id %>" class="btn waves-effect waves-light right" type="submit" name="action">Submit
+												<i class="mdi-content-send right"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<% }); %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer teal">
+		<% include partials/footer %>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

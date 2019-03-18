@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include partials/head %>
+</head>
+
+<body class="grey lighten-3">
+	<header>
+		<% include partials/header %>
+	</header>
+	<main>
+		<div class="container">
+			<div class="card-panel">
+				<div class="row">
+					<h1 class="center"><b>Registration</b></h1>
+					<form id="registration" class="col s12" action="/signup">
+						<h4>User infos</h4>
+						<div class="row">
+							<div class="input-field col s6">
+								<i class="material-icons prefix">person</i>
+								<input id="connect_id" type="text" class="validate" required>
+								<label for="connect_id">Username</label>
+							</div>
+							<div class="input-field col s6">
+								<i class="material-icons prefix">lock</i>
+								<input id="connect_pwd" type="password" class="validate" required>
+								<label for="connect_pwd">Password</label>
+							</div>
+						</div>
+						<h4>User profile</h4>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="firstname" type="text" class="validate" placeholder="John" required>
+								<label for="firstname" class="">First Name</label>
+							</div>
+
+							<div class="input-field col s6">
+								<input id="lastname" type="text" class="validate" placeholder="Doe" required>
+								<label for="lastname">Last Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="email" type="email" class="validate" placeholder="member@jobboard.com" required>
+								<label for="email">Email</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="phone" type="number" class="validate" placeholder="0656463626" required>
+								<label for="phone">Phone</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+									<i class="mdi-content-send right"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer teal">
+		<% include partials/footer %>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		$("#registration").submit(function (e) {
+			var form = {
+				"connect_id": $("#connect_id").val(),
+				"connect_pwd": $("#connect_pwd").val(),
+				"firstname": $("#firstname").val(),
+				"lastname": $("#lastname").val(),
+				"email": $("#email").val(),
+				"phone": $("#phone").val(),
+				"elevation": "0"
+			};
+			var url = $(this).attr('action');
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: JSON.stringify(form),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (data) {
+					alert(data.message);
+					if (data.result == 'OK')
+						window.location.href = "/";
+				},
+				error: function (xhr) {
+					alert("Error");
+				}
+			});
+			e.preventDefault();
+		});
+	</script>
+</body>
+
+</html>

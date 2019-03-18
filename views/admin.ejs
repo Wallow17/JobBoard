@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<% include partials/head %>
+</head>
+
+<body class="grey lighten-3">
+	<header>
+		<% include partials/header %>
+	</header>
+	<main>
+		<div class="container">
+			<div class="card-panel">
+				<h1 class="center"><b>Administration</b></h1>
+				<ul class="tabs">
+					<li class="tab col s3"><a href="#add">Add</a></li>
+					<li class="tab col s3"><a href="#remove">Remove</a></li>
+					<li class="tab col s3"><a href="#modify">Modify</a></li>
+					<li class="tab col s3 disabled"><a href="#test4">Soon</a></li>
+				</ul>
+				<div id="add" class="col s12">
+					<br>
+					<form id="add_form" action="/">
+						<div class="row">
+							<div class="input-field col s9">
+								<i class="material-icons prefix">title</i>
+								<input id="name" type="text" class="validate" required>
+								<label for="name">Title</label>
+							</div>
+							<div class="input-field col s3">
+								<i class="material-icons prefix">keyboard_arrow_right</i>
+								<input id="company_id" type="number" class="validate" required>
+								<label for="company_id">Company</label>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">attach_money</i>
+								<input id="wage" type="text" class="validate" required>
+								<label for="wage">Wage</label>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">place</i>
+								<input id="place" type="text" class="validate" required>
+								<label for="place">Place</label>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">date_range</i>
+								<input id="duration" type="text" class="validate" required>
+								<label for="duration">Duration</label>
+							</div>
+							<div class="input-field col s12">
+								<input id="resume" type="text" class="validate" required>
+								<label for="resume">Resume</label>
+							</div>
+							<div class="input-field col s12">
+								<textarea id="description" class="materialize-textarea validate" required></textarea>
+								<label for="description">Description</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light right" type="submit" name="action">Add new advert
+									<i class="mdi-content-send right"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="remove" class="col s12">
+					<br>
+					<form id="remove_form" action="/">
+						<div class="row">
+							<div class="input-field col s12">
+								<select required class="validate">
+									<% dbData.forEach(function (data) { %>
+									<option value="<%= data.id %>"><%= data.name %></option>
+									<% }); %>
+								</select>
+								<label>Advertissement</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light right" type="submit" name="action">Remove advert
+									<i class="mdi-content-send right"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="modify" class="col s12">
+					<br>
+					<form id="modify_form" action="/">
+						<div class="row">
+							<div class="input-field col s12">
+								<select>
+									<option value="" disabled selected>Choose advert</option>
+									<% dbData.forEach(function (data) { %>
+									<option value="<%= data.id %>"><%= data.name %></option>
+									<% }); %>
+								</select>
+								<label>Advertissement</label>
+							</div>
+						</div>
+						<div class="row" id="modify_row">
+							<div class="input-field col s9">
+								<i class="material-icons prefix">title</i>
+								<input id="name" type="text" class="validate" required>
+							</div>
+							<div class="input-field col s3">
+								<i class="material-icons prefix">keyboard_arrow_right</i>
+								<input id="company_id" type="number" class="validate" required>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">attach_money</i>
+								<input id="wage" type="text" class="validate" required>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">place</i>
+								<input id="place" type="text" class="validate" required>
+							</div>
+							<div class="input-field col s4">
+								<i class="material-icons prefix">date_range</i>
+								<input id="duration" type="text" class="validate" required>
+							</div>
+							<div class="input-field col s12">
+								<input id="resume" type="text" class="validate" required>
+							</div>
+							<div class="input-field col s12">
+								<textarea id="description" class="materialize-textarea validate" required></textarea>
+							</div>
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light right" type="submit" name="action">Update Advert
+									<i class="mdi-content-send right"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="test4" class="col s12">Test 4</div>
+			</div>
+		</div>
+		</div>
+	</main>
+	<footer class="page-footer teal">
+		<% include partials/footer %>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/admin.js"></script>
+</body>
+
+</html>
